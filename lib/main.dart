@@ -23,7 +23,14 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Organize'),
       ),
-      body: Center(child: Text('Organize Laucher')),
+      body: Column(children: <Widget>[
+        Card(
+          child: Text('CHART!'),
+        ),
+        Card(
+          child: Text('LIST OF TX!'),
+        )
+      ]),
     );
   }
 }
