@@ -32,7 +32,7 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Card(
               color: Colors.amber,
@@ -47,9 +47,24 @@ class MyHomePage extends StatelessWidget {
                 return Card(
                     child: Row(children: <Widget>[
                   Container(
-                    child: Text(tx.amount.toString()),
+                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 17),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.teal,
+                        width: 6,
+                      ),
+                    ),
+                    padding: EdgeInsets.all(14),
+                    child: Text(
+                      tx.amount.toString(),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.teal),
+                    ),
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(tx.title),
                       Text(tx.date.toString())
