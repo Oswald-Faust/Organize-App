@@ -58,7 +58,7 @@ class MyHomePage extends StatelessWidget {
                     ),
                     padding: EdgeInsets.all(14),
                     child: Text(
-                      tx.amount.toString(),
+                      '\$' + tx.amount.toString(), // '\$${tx.amount}
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
