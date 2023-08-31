@@ -31,8 +31,10 @@ class MyHomePage extends StatelessWidget {
         title: Text('Organize'),
       ),
       body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment:
+              MainAxisAlignment.spaceEvenly, //un peu comme un flex
+          crossAxisAlignment:
+              CrossAxisAlignment.center, //perpendiculairement à l'axe principal
           children: <Widget>[
             Card(
               color: Colors.amber,
@@ -51,13 +53,13 @@ class MyHomePage extends StatelessWidget {
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.teal,
-                        width: 6,
+                        width: 3,
                       ),
                     ),
                     padding: EdgeInsets.all(14),
                     child: Text(
                       tx.amount.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Colors.teal),
@@ -66,7 +68,13 @@ class MyHomePage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(tx.title),
+                      Text(
+                        tx.title,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
                       Text(tx.date.toString())
                     ],
                   )
