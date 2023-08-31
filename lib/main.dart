@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import './transaction.dart';
+
+import 'widgets/transaction_list.dart';
 
 void main() {
   runApp(const MainApp());
@@ -19,11 +19,11 @@ class MainApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transactions = [
-    Transaction(
-        id: 't1', title: 'Harry Houses', amount: 74.33, date: DateTime.now()),
-    Transaction(id: 't2', title: 'Feu', amount: 41.22, date: DateTime.now())
-  ];
+  //late String titleInput;
+  //late String amountInput;
+
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +32,9 @@ class MyHomePage extends StatelessWidget {
         title: Text('Organize'),
       ),
       body: Column(
-          mainAxisAlignment:
+          /*mainAxisAlignment:
               MainAxisAlignment.spaceEvenly, //un peu comme un flex
+          */
           crossAxisAlignment:
               CrossAxisAlignment.center, //perpendiculairement à l'axe principal
           children: <Widget>[
@@ -45,43 +46,41 @@ class MyHomePage extends StatelessWidget {
               ),
               elevation: 5,
             ),
-            Column(
-              children: transactions.map((tx) {
-                return Card(
-                    child: Row(children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 17),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.teal,
-                        width: 3,
-                      ),
+            Card(
+              elevation: 5,
+              child: Container(
+                padding: EdgeInsets.all(9),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    TextField(
+                      cursorColor: Colors.blue,
+                      decoration: InputDecoration(labelText: 'Title'),
+                      controller: titleController,
+                      /*onChanged: (value) {
+                        titleInput = value;
+                      },*/
                     ),
-                    padding: EdgeInsets.all(14),
-                    child: Text(
-                      '\$' + tx.amount.toString(), // '\$${tx.amount}
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.teal),
+                    TextField(
+                      cursorColor: Colors.blue,
+                      decoration: InputDecoration(labelText: ''),
+                      controller: amountController,
+                      /* onChanged: (value) {
+                        amountInput = value;
+                      }*/
                     ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        tx.title,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                      Text(tx.date.toString())
-                    ],
-                  )
-                ]));
-              }).toList(),
+                    TextButton(
+                      child: Text('Ajouter une transaction'),
+                      onPressed: () {
+                        print(titleController.text);
+                        print(amountController.text);
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
+            TransactionList()
           ]),
     );
   }
